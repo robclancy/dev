@@ -4,3 +4,4 @@
 "rocks.nvim" = "2.43.0"
 tree-sitter-nu = "0.0.29"
 "oil.nvim" = "2.14.0"
+nvim-lspconfig = "1.3.0"

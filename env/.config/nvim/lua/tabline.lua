@@ -27,4 +27,13 @@ function LongerTabline()
 	return table.concat(out, '/')
 end
 
-vim.opt.tabline = '%{v:lua.LongerTabline()}'
+function TheDate()
+    return os.date('%a %d, %H:%M')
+end
+
+function FakeBattery()
+	return "BAT 69%"
+end
+
+vim.opt.tabline = '[%{v:lua.LongerTabline()}%=%#TabLineMiniBar#%{v:lua.FakeBattery()}  %{v:lua.TheDate()}%*]'
+

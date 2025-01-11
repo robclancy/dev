@@ -44,7 +44,7 @@ local function BatteryLevel()
 		class_name = "Battery",
 		Widget.Icon({
 			css = astal.bind(bat, 'percentage'):as(function (bat)
-				if bat.percentage < 10 then
+				if bat.percentage <= 10 then
 					return "color: red; font-size: 110%"
 				end
 				if bat.percentage < 20 then
@@ -55,7 +55,7 @@ local function BatteryLevel()
 		}),
 		Widget.Label({
 			css = astal.bind(bat, 'percentage'):as(function (bat)
-				if bat.percentage < 10 then
+				if bat.percentage <= 10 then
 					return "color: red; font-size: 115%"
 				end
 				if bat.percentage < 30 then

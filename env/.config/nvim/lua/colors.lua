@@ -55,6 +55,9 @@ local group_styles = {
 
   ['LspSignatureActiveParameter'] = { bg = 'None' },
 
+  ['TabLineFill'] = { bg = 'None' },
+  ['TabLineMiniBar'] = { fg = '#999999' },
+
 }
 
 for group, style in pairs(group_styles) do
