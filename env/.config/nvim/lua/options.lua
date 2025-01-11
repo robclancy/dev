@@ -1,6 +1,10 @@
 vim.opt.cursorline = true
 vim.opt.inccommand = 'split'
-vim.opt.cmdheight = 0
+
+vim.opt.cmdheight = 1
+vim.opt.laststatus = 0
+vim.opt.showtabline = 2
+vim.opt.guicursor = ''
 
 vim.opt.expandtab = false
 vim.opt.shiftwidth = 4

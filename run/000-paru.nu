@@ -1,5 +1,3 @@
-#!vim: set syntax=nu
-
 def "main arch" [] {
 	sudo pacman -S --needed base-devel --noconfirm
 

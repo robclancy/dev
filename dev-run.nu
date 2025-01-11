@@ -1,4 +1,4 @@
-#!vim: set syntax=nu
+#!/usr/bin/env nu
 
 def main [] {
 	let $dry = false
