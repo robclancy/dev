@@ -1,4 +1,5 @@
 require("options")
 require("colors")
 require("tabline")
-require("plugins/oil")
+require("plugins")
+require("languages")

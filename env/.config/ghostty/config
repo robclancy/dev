@@ -4,7 +4,7 @@ command = nu
 theme = Pnevma
 background = black
 
-font-size = 11
+font-size = 13
 
 gtk-titlebar = false
 window-padding-y = 1
