@@ -4,6 +4,7 @@ command = nu
 theme = Pnevma
 background = black
 
+font-family = "MonaspaceNeon"
 font-size = 13
 
 gtk-titlebar = false

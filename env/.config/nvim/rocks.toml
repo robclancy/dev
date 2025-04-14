@@ -1,7 +1,18 @@
 [rocks]
 
 [plugins]
-"rocks.nvim" = "2.43.0"
-tree-sitter-nu = "0.0.29"
-"oil.nvim" = "2.14.0"
-nvim-lspconfig = "1.5.0"
+"rocks.nvim" = "2.44.0"
+tree-sitter-nu = "0.0.41"
+"oil.nvim" = "2.15.0"
+"conform.nvim" = "9.0.0"
+"lazydev.nvim" = "1.9.0"
+fzf-lua = "0.0.1830"
+"rocks-git.nvim" = "2.5.3"
+tree-sitter-astro = "0.0.33"
+tree-sitter-typescript = "0.0.37"
+tree-sitter-tsx = "0.0.35"
+tree-sitter-json = "0.0.36"
+
+[plugins."accent.vim"]
+git = "alligator/accent.vim"
+rev = "54e0b255cb2c93555014197c8adc59d631c25696"
