@@ -1,23 +1,7 @@
-command = nu
-
-# theme = Everforest Dark - Hard
 theme = Pnevma
 background = black
+background-opacity = 0.85
+cursor-style = block
 
 font-family = "MonaspaceNeon"
 font-size = 13
-
-gtk-titlebar = false
-window-padding-y = 1
-window-padding-x = 1
-background-opacity = 0.85
-
-keybind = alt+one=unbind
-keybind = alt+two=unbind
-keybind = alt+three=unbind
-keybind = alt+four=unbind
-keybind = alt+five=unbind
-keybind = alt+six=unbind
-keybind = alt+seven=unbind
-keybind = alt+eight=unbind
-keybind = alt+nine=unbind
