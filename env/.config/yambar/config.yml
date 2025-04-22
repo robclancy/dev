@@ -48,6 +48,7 @@ bar:
                             string: 
                               text: "{cpu}%"
                               <<: *color_yellow
+
     - script:
         path: '~/.config/yambar/cpu_temp.sh'
         poll-interval: 1111
@@ -120,8 +121,12 @@ bar:
                         conditions:
                           ipv4 == "":
                             - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s", foreground: ffffff66}
-
-
+  center:
+    - script:
+        path: '~/.config/yambar/workspaces.sh'
+        poll-interval: 666
+        content: 
+          string: {text: "{workspaces}"}
   right:
     - pipewire:
         content:
