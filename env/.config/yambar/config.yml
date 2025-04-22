@@ -1,0 +1,147 @@
+# better reference than docs: 
+# https://github.com/meeranh/dotfiles/blob/0c87d9b5d302e4afb990924945a96b68e8e0e779/yambar/config.yml#L136
+#
+# run this to see changes live:
+#
+# yambar &
+# while true; do
+#  inotifywait -e modify ~/.config/yambar/config.yml
+#  pkill yambar
+#  yambar &
+# done
+#
+
+color_red: &color_red
+  foreground: "F38BA8FF"
+
+color_yellow: &color_yellow
+  foreground: "E0AF68FF"
+
+anchors:
+  separator: &separator
+    label: 
+      content: {string: {text: " "}}
+
+bar:
+  height: 26
+  location: top
+  background: 000000ff
+  font: MonaspaceKrypton
+  spacing: 3
+  margin: 5
+
+  left: 
+    - cpu:
+        poll-interval: 1111
+        content:
+          map:
+            default: {empty: {}}
+            conditions: 
+              id < 0:
+                list:
+                  items: 
+                    - string: {text: "CPU "}
+                    - map:
+                        default: {string: {text: "{cpu}%"}}
+                        conditions:
+                          cpu > 70:
+                            string: 
+                              text: "{cpu}%"
+                              <<: *color_yellow
+    - script:
+        path: '~/.config/yambar/cpu_temp.sh'
+        poll-interval: 1111
+        content: 
+          map:
+            default: {string: {text: "{temp}"}}
+            conditions:
+              temp > 85:
+                string: 
+                  text: "{temp}%"
+                  <<: *color_red
+              temp > 70:
+                string: 
+                  text: "{temp}%"
+                  <<: *color_yellow
+    - *separator
+    - mem:
+        poll-interval: 2222
+        content:
+          list:
+            items:
+              - string: {text: "MEM "}
+              - map:
+                  default: {string: {text: "{percent_used}%"}}
+                  conditions:
+                    percent_used > 80:
+                      string: 
+                        text: '{percent_used}%'
+                        <<: *color_red
+    - *separator
+    - network:
+        content:
+          map:
+            default: {empty: {}}
+            conditions:
+              name == enp6s0:
+                map:
+                  conditions:
+                    ~carrier: {empty: {}}
+                    carrier:
+                      map:
+                        default: {string: {text: "not connected", foreground: ff0000ff }}
+                        conditions:
+                          state == up && ipv4 != "": {string: {text: connected}}
+    - network:
+        poll-interval: 1111
+        content:
+          map:
+            default: {empty: {}}
+            conditions:
+              name == wlp5s0:
+                map:
+                  conditions:
+                    state == down: {string: {text: "not connected", foreground: ff0000ff}}
+                    state == up:
+                      map:
+                        default:
+                          - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s"}
+
+                        conditions:
+                          ipv4 == "":
+                            - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s", foreground: ffffff66}
+
+
+  right:
+    - pipewire:
+        content:
+          map:
+            conditions:
+              type == "sink":
+                list:
+                  spacing: 4
+                  items:
+                    - map:
+                        default:
+                          string: 
+                            text: "VOL {cubic_volume}%"
+                            on-click: 
+                              left: "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+                              wheel-up: "pactl set-sink-volume @DEFAULT_SINK@ +1%"
+                              wheel-down: "pactl set-sink-volume @DEFAULT_SINK@ -1%"
+                        conditions:
+                          muted:
+                            string: 
+                              text: "VOL [MUTED]"
+                              on-click:
+                                left: "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+                                wheel-up: "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+                    - string:
+                        text: "{description}"
+                        on-click: "pavucontrol-qt"
+    - *separator
+    - clock:
+        date-format: "%d %b"
+        time-format: "%H:%M %Z"
+        content:
+          - string: {text: "{time}, {date}"}

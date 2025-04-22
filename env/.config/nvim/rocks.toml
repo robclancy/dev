@@ -12,6 +12,7 @@ tree-sitter-astro = "0.0.33"
 tree-sitter-typescript = "0.0.37"
 tree-sitter-tsx = "0.0.35"
 tree-sitter-json = "0.0.36"
+tree-sitter-yaml = "0.0.34"
 
 [plugins."accent.vim"]
 git = "alligator/accent.vim"
