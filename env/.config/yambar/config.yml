@@ -53,15 +53,15 @@ bar:
         poll-interval: 1111
         content: 
           map:
-            default: {string: {text: "{temp}"}}
+            default: {string: {text: "{temp}°C"}}
             conditions:
               temp > 85:
                 string: 
-                  text: "{temp}%"
+                  text: "{temp}°C"
                   <<: *color_red
               temp > 70:
                 string: 
-                  text: "{temp}%"
+                  text: "{temp}°C"
                   <<: *color_yellow
     - *separator
     - mem:
@@ -78,6 +78,16 @@ bar:
                         text: '{percent_used}%'
                         <<: *color_red
     - *separator
+    - disk-io:
+        poll-interval: 2222
+        content:
+          map:
+            conditions:
+              device == Total:
+                list:
+                  items:
+                    - string: {text: "IO {read_speed:mib}/{write_speed:mib} MB/s"}
+    - *separator
     - network:
         content:
           map:
@@ -93,7 +103,7 @@ bar:
                         conditions:
                           state == up && ipv4 != "": {string: {text: connected}}
     - network:
-        poll-interval: 1111
+        poll-interval: 2222
         content:
           map:
             default: {empty: {}}
@@ -119,7 +129,7 @@ bar:
             conditions:
               type == "sink":
                 list:
-                  spacing: 4
+                  spacing: 5
                   items:
                     - map:
                         default:
