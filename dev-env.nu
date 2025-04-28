@@ -16,6 +16,8 @@ def main [] {
 	print $"symlinking: ln -sf ('./env/.config/nvim/rocks.toml' | path expand) ($env.XDG_CONFIG_HOME)/nvim/rocks.toml
 "
 	ln -sf ('./env/.config/nvim/rocks.toml' | path expand) $"($env.XDG_CONFIG_HOME)/nvim/rocks.toml"
+
+	hyprctl reload
 }
 
 def copy_files [from, to] {

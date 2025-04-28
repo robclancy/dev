@@ -159,4 +159,4 @@ bar:
         date-format: "%d %b"
         time-format: "%H:%M %Z"
         content:
-          - string: {text: "{time}, {date}"}
+          - string: {text: "{date}, {time}"}
