@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ "$(pwd)" == $HOME/Projects ]]; then
+    clear
+    return
+fi
+
+tmux new-window -dn btw
+tmux split-window -h -t btw
+tmux split-window -v -t btw
+
+tmux rename-window neovim
+clear
