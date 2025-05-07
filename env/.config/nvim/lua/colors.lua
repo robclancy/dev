@@ -7,6 +7,7 @@ vim.api.nvim_create_user_command("Accent", function(opts)
 
 	vim.g.accent_no_bg = 1
 
+	vim.opt.termguicolors = false
 	vim.cmd("colorscheme accent")
 
 	-- vim.api.nvim_set_hl(0, "Normal", { bg = "None" })
