@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
 -- System clipboard
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 vim.keymap.set(
@@ -14,6 +16,8 @@ vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent =
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ~/.config/tmux/tmux-sessionizer<CR>")
 
 vim.keymap.set("n", "<leader>~", ":b#<CR>", { noremap = true, silent = true, desc = "previous buffer" })
+
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "quickfix list" })
 
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')

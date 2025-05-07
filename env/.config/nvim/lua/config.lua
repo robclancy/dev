@@ -1,3 +1,16 @@
+vim.lsp.config("*", {
+	root_markers = { ".git", ".hg" },
+	vim.lsp.config("*", {
+		capabilities = {
+			textDocument = {
+				semanticTokens = {
+					multilineTokenSupport = true,
+				},
+			},
+		},
+	}),
+})
+
 vim.diagnostic.config({ virtual_text = true, signs = false })
 
 -- Highlight when yanking (copying) text
