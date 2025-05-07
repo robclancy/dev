@@ -5,3 +5,5 @@ cursor-style = block
 
 font-family = "MonaspaceNeon"
 font-size = 16
+
+scrollback-limit = 69001
