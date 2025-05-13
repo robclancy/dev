@@ -13,11 +13,13 @@ vim.lsp.config("*", {
 	}),
 })
 
---cr - rename
---ca - code action
+vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "goto type" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "goto ref" })
 
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "rename" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code action" })
+
+vim.keymap.set("n", "<leader>fu", "<cmd>LspRestart<CR>", { desc = "all my homies hate lsps" })
 
 vim.api.nvim_create_user_command("LspRestart", function()
 	local detach_clients = {}

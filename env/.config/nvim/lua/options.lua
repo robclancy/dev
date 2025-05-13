@@ -10,8 +10,9 @@ vim.opt.splitbelow = true
 vim.opt.breakindent = true
 
 vim.opt.cmdheight = 1
-vim.opt.laststatus = 0
-vim.opt.showtabline = 2
+vim.opt.laststatus = 2
+vim.opt.showtabline = 0
+vim.opt.statusline = "⤿%4* %<%f%*"
 vim.opt.guicursor = ""
 
 vim.opt.expandtab = false
@@ -22,7 +23,7 @@ vim.opt.smartindent = true
 vim.opt.relativenumber = false
 vim.opt.number = false
 
-vim.opt.wrap = true
+vim.opt.wrap = false
 
 vim.opt.pumheight = 6
 vim.opt.pumwidth = 18
