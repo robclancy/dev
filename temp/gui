@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+cd ~
+
+if test -z "$XDG_RUNTIME_DIR"; then
+    export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
+fi
+
+doas rc-service wpa_supplicant start
+
+$(ssh-agent -s)
+
+# export WLR_NO_HARDWARE_CURSOTS="1"
+
+# exec dbus-launch --exit-with-session Hyprland
+exec dbus-run-session Hyprland

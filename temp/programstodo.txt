@@ -1,0 +1,4 @@
+future-cyan-hyprcursor
+Future-cursors
+powerlevel10
+mako
