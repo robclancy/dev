@@ -6,7 +6,7 @@ tree-sitter-nu = "0.0.42"
 "oil.nvim" = "2.15.0"
 "conform.nvim" = "9.0.0"
 "lazydev.nvim" = "1.9.0"
-fzf-lua = "0.0.1881"
+fzf-lua = "0.0.1896"
 "rocks-git.nvim" = "2.5.3"
 tree-sitter-astro = "0.0.34"
 tree-sitter-typescript = "0.0.37"
@@ -28,3 +28,7 @@ rev = "4898c98702954439233fdaf764c39636681e2861"
 [plugins."kanso.nvim"]
 git = "webhooked/kanso.nvim"
 rev = "7205d3902adf14c11b6aee658d6dcddd37b7ba95"
+
+[plugins."cyberdream.nvim"]
+git = "scottmckendry/cyberdream.nvim"
+rev = "v5.2.0"

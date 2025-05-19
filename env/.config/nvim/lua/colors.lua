@@ -1,3 +1,8 @@
+vim.api.nvim_create_user_command("Transparent", function()
+	vim.api.nvim_set_hl(0, "Normal", { bg = "None" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#111111" })
+end, {})
+
 -- vim.api.nvim_create_user_command("Accent", function(opts)
 -- 	if opts.args then
 -- 		vim.g.accent_colour = opts.args
@@ -26,6 +31,18 @@ require("kanso").setup({
 	theme = "zen",
 })
 
-vim.cmd("colorscheme kanso")
+require("cyberdream").setup({
+	transparent = true,
+	-- saturation = 0.8,
+	italic_comments = true,
+	extensions = {
+		blinkcmp = true,
+		fzflua = true,
+		treesitter = true,
+	},
+})
 
-vim.api.nvim_set_hl(0, "CursorLine", { bg = "#080808" })
+-- vim.cmd("colorscheme kanso")
+-- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#080808" })
+
+vim.cmd("colorscheme cyberdream")
