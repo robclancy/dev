@@ -6,10 +6,12 @@ wallpaper() {
 
     wallpaper_dir="$HOME/wallpaper"
 
+    setopt nullglob
     for file in $wallpaper_dir/*.{png,jpg,jpeg}; do
         echo "preloading $file"
         hyprctl hyprpaper preload $file
     done
+    unsetopt nullglob
 
     sleep 0.5 
 

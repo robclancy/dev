@@ -1,6 +1,6 @@
 theme = Pnevma
 background = black
-background-opacity = 0.85
+background-opacity = 0.95
 cursor-style = block
 
 font-family = "MonaspaceNeon"

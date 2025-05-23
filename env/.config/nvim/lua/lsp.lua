@@ -1,4 +1,4 @@
-vim.lsp.enable({ "luals", "vtsls", "astro", "yamlls" })
+vim.lsp.enable({ "luals", "vtsls", "astro", "yamlls", "jsonls" })
 
 vim.lsp.config("*", {
 	root_markers = { ".git", ".hg" },

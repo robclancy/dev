@@ -32,3 +32,7 @@ rev = "7205d3902adf14c11b6aee658d6dcddd37b7ba95"
 [plugins."cyberdream.nvim"]
 git = "scottmckendry/cyberdream.nvim"
 rev = "v5.2.0"
+
+[plugins.vim-fugitive]
+git = "tpope/vim-fugitive"
+rev = "v3.7"

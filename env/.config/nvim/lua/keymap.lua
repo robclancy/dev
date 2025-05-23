@@ -19,3 +19,9 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "quickfix l
 
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "ff", "<Esc>")
+
+vim.keymap.set("n", "K", function(opts)
+	opts = opts or {}
+	opts.border = "single"
+	vim.lsp.buf.hover(opts)
+end)
