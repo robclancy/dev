@@ -24,6 +24,10 @@ vim.opt.smartindent = true
 vim.opt.relativenumber = false
 vim.opt.number = false
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable = false
+
 vim.opt.wrap = false
 
 vim.opt.pumheight = 6

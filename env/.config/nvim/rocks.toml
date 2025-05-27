@@ -16,6 +16,12 @@ tree-sitter-yaml = "0.0.34"
 tree-sitter-javascript = "0.0.36"
 tree-sitter-svelte = "0.0.33"
 harpoon = "scm"
+tree-sitter-html = "0.0.36"
+tree-sitter-css = "0.0.37"
+tree-sitter-jsx = "0.0.30"
+tree-sitter-markdown_inline = "0.0.38"
+tree-sitter-markdown = "0.0.40"
+"copilot.lua" = "scm"
 
 [plugins."accent.vim"]
 git = "alligator/accent.vim"

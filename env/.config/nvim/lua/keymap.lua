@@ -17,9 +17,6 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ~/.config/tmux/tmux-session
 
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "quickfix list" })
 
-vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("i", "ff", "<Esc>")
-
 vim.keymap.set("n", "K", function(opts)
 	opts = opts or {}
 	opts.border = "single"

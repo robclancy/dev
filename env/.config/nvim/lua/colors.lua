@@ -3,6 +3,18 @@ vim.api.nvim_create_user_command("Transparent", function()
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#111111" })
 end, {})
 
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+	callback = function()
+		io.stdout:write("\27]12;orange\7")
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "VimLeave" }, {
+	callback = function()
+		io.stdout:write("\27]12;white\7")
+	end,
+})
+
 -- vim.api.nvim_create_user_command("Accent", function(opts)
 -- 	if opts.args then
 -- 		vim.g.accent_colour = opts.args
