@@ -5,7 +5,11 @@ if test -z "$XDG_RUNTIME_DIR"; then
     export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 fi
 
-doas rc-service wpa_supplicant start
+if [ -f /etc/arch-release ]; then
+	#
+elif [ -f /etc/gentoo-release ]; then
+	doas rc-service wpa_supplicant start
+fi
 
 $(ssh-agent -s)
 

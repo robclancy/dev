@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+if ! perl -MFile::Copy::Recursive -e 'exit 0;' 2>/dev/null; then
+  echo "Installing required Perl module to ~/.local/lib/perl5..."
+  mkdir -p ~/.local/lib/perl5
+  PERL_MM_OPT="INSTALL_BASE=$HOME/.local" PERL5LIB=~/.local/lib/perl5 cpan -i File::Copy::Recursive
+fi
+
+PERL5LIB=~/.local/lib/perl5 perl env.pl "$@"
