@@ -4,7 +4,7 @@ workspaces=$(hyprctl workspaces -j)
 active_id=$(hyprctl activeworkspace -j | jq '.id')
 
 echo -n "workspaces|string|"
-echo "$workspaces" | jq -c '.[]' | while read -r workspace; do
+echo "$workspaces" | jq -c 'sort_by(try (.name | tonumber) catch .name) | .[]' | while read -r workspace; do
  id=$(echo "$workspace" | jq '.id')
  name=$(echo "$workspace" | jq -r '.name')
  windows=$(echo "$workspace" | jq '.windows')

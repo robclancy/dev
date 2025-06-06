@@ -10,9 +10,10 @@ vim.opt.splitbelow = true
 vim.opt.breakindent = true
 
 vim.opt.cmdheight = 1
-vim.opt.laststatus = 2
+vim.opt.laststatus = 0
 vim.opt.showtabline = 0
-vim.opt.statusline = "⤿%4* %<%f%*"
+-- vim.opt.statusline = "⤿%4* %<%f%*"
+vim.opt.winbar = "%=%m %f"
 vim.opt.guicursor = ""
 
 vim.opt.expandtab = false
@@ -22,6 +23,10 @@ vim.opt.smartindent = true
 
 vim.opt.relativenumber = false
 vim.opt.number = false
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable = false
 
 vim.opt.wrap = false
 

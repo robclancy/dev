@@ -1,2 +1,2 @@
 #!/bin/bash
-gentoo-pipewire-launcher & 
+gentoo-pipewire-launcher restart & 
