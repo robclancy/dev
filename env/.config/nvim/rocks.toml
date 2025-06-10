@@ -1,12 +1,12 @@
 [rocks]
 
 [plugins]
-"rocks.nvim" = "2.44.0"
+"rocks.nvim" = "2.45.0"
 tree-sitter-nu = "0.0.42"
 "oil.nvim" = "2.15.0"
 "conform.nvim" = "9.0.0"
 "lazydev.nvim" = "1.9.0"
-fzf-lua = "0.0.1896"
+fzf-lua = "0.0.1910"
 "rocks-git.nvim" = "2.5.3"
 tree-sitter-astro = "0.0.34"
 tree-sitter-typescript = "0.0.37"
@@ -22,6 +22,8 @@ tree-sitter-jsx = "0.0.30"
 tree-sitter-markdown_inline = "0.0.38"
 tree-sitter-markdown = "0.0.40"
 "copilot.lua" = "scm"
+tree-sitter-odin = "0.0.32"
+"render-markdown.nvim" = "8.4.0"
 
 [plugins."accent.vim"]
 git = "alligator/accent.vim"
@@ -46,3 +48,11 @@ rev = "v3.7"
 [plugins."blink.cmp"]
 git = "saghen/blink.cmp"
 rev = "v1.3.1"
+
+[plugins.vim-rhubarb]
+git = "tpope/vim-rhubarb"
+rev = "386daa2e9d98e23e27ad089afcbe5c5a903e488d"
+
+[plugins.vimwiki]
+git = "vimwiki/vimwiki"
+rev = "v2024.01.24"
