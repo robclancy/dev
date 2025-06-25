@@ -1,3 +1,4 @@
+require("plugins/tmux-navigation")
 require("plugins/lazydev")
 require("plugins/conform")
 require("plugins/oil")

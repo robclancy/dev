@@ -26,6 +26,7 @@ tree-sitter-markdown = "0.0.40"
 "copilot.lua" = "scm"
 tree-sitter-odin = "0.0.32"
 "render-markdown.nvim" = "8.4.0"
+tree-sitter-php = "0.0.43"
 
 [plugins."accent.vim"]
 git = "alligator/accent.vim"

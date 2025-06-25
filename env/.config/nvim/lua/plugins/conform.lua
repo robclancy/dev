@@ -19,6 +19,8 @@ conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "black" },
+		json = { "prettierd", "biome" },
+		jsonc = { "prettierd", "biome" },
 		javascript = { "prettierd", "biome" },
 		javascriptreact = { "prettierd", "biome" },
 		typescript = { "prettierd", "biome" },
