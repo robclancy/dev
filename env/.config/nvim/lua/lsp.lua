@@ -6,7 +6,9 @@ vim.lsp.enable({
 	"jsonls",
 	"cssls",
 	"html",
-	"phan",
+	-- "phan",
+	"elixir",
+	"phpactor",
 })
 
 vim.lsp.config("*", {

@@ -26,3 +26,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_user_command("Browse", function(opts)
 	vim.fn.system({ "xdg-open", opts.fargs[1] })
 end, { nargs = 1 })
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = "*.php",
+	callback = function()
+		-- vim php maintainer does some of the dumbest shit
+		vim.opt_local.indentexpr = ""
+		vim.opt_local.smartindent = true
+		vim.opt_local.comments = "://,f:#[,:#"
+		vim.opt_local.commentstring = "// %s"
+	end,
+})

@@ -57,4 +57,4 @@ require("cyberdream").setup({
 -- vim.cmd("colorscheme kanso")
 -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#080808" })
 
-vim.cmd("colorscheme cyberdream")
+vim.cmd("colorscheme naysayer")

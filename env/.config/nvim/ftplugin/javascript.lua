@@ -1,9 +1,8 @@
 local terminal = require("utils.terminal-output")
 
-vim.treesitter.start()
-
 vim.keymap.set("n", "<leader>e", function()
-	terminal("pnpm jest " .. vim.fn.shellescape(vim.fn.expand("%")), {
+	local current_file = vim.fn.expand("%")
+	terminal("pnpm jest " .. vim.fn.shellescape(current_file), {
 		filetype = "jest-output",
-	})
+	}, current_file)
 end, { desc = "Run Jest for current file" })

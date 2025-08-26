@@ -10,4 +10,16 @@ return {
 	},
 	root_markers = { "tsconfig.json", "package.json", "jsconfig.json", ".git" },
 	single_file_support = true,
+	settings = {
+		typescript = {
+			preferences = {
+				importModuleSpecifier = "non-relative",
+			},
+		},
+		javascript = {
+			preferences = {
+				importModuleSpecifier = "non-relative",
+			},
+		},
+	},
 }
