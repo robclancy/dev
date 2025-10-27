@@ -1,5 +1,6 @@
 return {
-	cmd = { "/home/robbo/elixir-ls/release/language_server.sh" },
+	-- cmd = { "/home/robbo/elixir-ls/release/language_server.sh" },
+	cmd = { "/home/robbo/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
 	filetypes = { "elixir", "eelixir", "heex", "surface" },
 	root_dir = function(bufnr, on_dir)
 		local fname = vim.api.nvim_buf_get_name(bufnr)

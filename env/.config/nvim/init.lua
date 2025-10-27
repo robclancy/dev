@@ -15,6 +15,7 @@ vim.pack.add({
 	{ src = "https://github.com/tpope/vim-rhubarb" },
 	{ src = "https://github.com/vimwiki/vimwiki" },
 	-- { src = "https://github.com/dmtrKovalenko/fff.nvim" },
+	{ src = "https://github.com/cbochs/grapple.nvim" },
 
 	{ src = "https://github.com/alligator/accent.vim" },
 	{ src = "https://github.com/webhooked/kanso.nvim" },
