@@ -1,3 +1,7 @@
+require("grapple").setup({
+	icons = false,
+})
+
 -- https://www.reddit.com/r/neovim/comments/1nbiv93/combining_best_of_marks_and_harpoon_with_grapple/
 local function save_mark()
 	local char = vim.fn.getcharstr()
