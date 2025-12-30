@@ -1,51 +1,14 @@
+# This is your rocks.nvim plugins declaration file.
+# Here is a small yet pretty detailed example on how to use it:
+#
+# [plugins]
+# nvim-treesitter = "semver_version"  # e.g. "1.0.0"
+
+# List of non-Neovim rocks.
+# This includes things like `toml` or other lua packages.
 [rocks]
 
+# List of Neovim plugins to install alongside their versions.
+# If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
-"rocks.nvim" = "2.44.0"
-tree-sitter-nu = "0.0.42"
-"oil.nvim" = "2.15.0"
-"conform.nvim" = "9.0.0"
-"lazydev.nvim" = "1.9.0"
-fzf-lua = "0.0.1896"
-"rocks-git.nvim" = "2.5.3"
-tree-sitter-astro = "0.0.34"
-tree-sitter-typescript = "0.0.37"
-tree-sitter-tsx = "0.0.35"
-tree-sitter-json = "0.0.36"
-tree-sitter-yaml = "0.0.34"
-tree-sitter-javascript = "0.0.36"
-tree-sitter-svelte = "0.0.33"
-harpoon = "scm"
-tree-sitter-bash = "0.0.40"
-tree-sitter-perl = "0.0.43"
-tree-sitter-html = "0.0.36"
-tree-sitter-css = "0.0.37"
-tree-sitter-jsx = "0.0.30"
-tree-sitter-markdown_inline = "0.0.38"
-tree-sitter-markdown = "0.0.40"
-"copilot.lua" = "scm"
-tree-sitter-odin = "0.0.32"
-
-[plugins."accent.vim"]
-git = "alligator/accent.vim"
-rev = "54e0b255cb2c93555014197c8adc59d631c25696"
-
-[plugins.nvim-tmux-navigation]
-git = "alexghergh/nvim-tmux-navigation"
-rev = "4898c98702954439233fdaf764c39636681e2861"
-
-[plugins."kanso.nvim"]
-git = "webhooked/kanso.nvim"
-rev = "7205d3902adf14c11b6aee658d6dcddd37b7ba95"
-
-[plugins."cyberdream.nvim"]
-git = "scottmckendry/cyberdream.nvim"
-rev = "v5.2.0"
-
-[plugins.vim-fugitive]
-git = "tpope/vim-fugitive"
-rev = "v3.7"
-
-[plugins."blink.cmp"]
-git = "saghen/blink.cmp"
-rev = "v1.3.1"
+"rocks.nvim" = "2.43.1" # rocks.nvim can also manage itself :D

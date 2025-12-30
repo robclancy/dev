@@ -6,4 +6,15 @@ cursor-style = block
 font-family = "MonaspaceNeon"
 font-size = 16
 
-scrollback-limit = 69001
+scrollback-limit = 690000000
+
+keybind = alt+one=unbind
+keybind = alt+two=unbind
+keybind = alt+three=unbind
+keybind = alt+four=unbind
+keybind = alt+five=unbind
+keybind = alt+six=unbind
+keybind = alt+seven=unbind
+keybind = alt+eight=unbind
+keybind = alt+nine=unbind
+keybind = alt+zero=unbind

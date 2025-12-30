@@ -13,16 +13,25 @@ conform.setup({
 
 	formatters = {
 		biome = { require_cwd = true },
-		prettierd = { require_cwd = true },
+		-- prettierd = { require_cwd = true },
+		prettier = { require_cwd = true },
 	},
 
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "black" },
-		javascript = { "prettierd", "biome" },
-		javascriptreact = { "prettierd", "biome" },
-		typescript = { "prettierd", "biome" },
-		typescriptreact = { "prettierd", "biome" },
+		-- json = { "prettierd", "biome" },
+		-- jsonc = { "prettierd", "biome" },
+		-- javascript = { "prettierd", "biome" },
+		-- javascriptreact = { "prettierd", "biome" },
+		-- typescript = { "prettierd", "biome" },
+		-- typescriptreact = { "prettierd", "biome" },
+		json = { "prettier", "biome" },
+		jsonc = { "prettier", "biome" },
+		javascript = { "prettier", "biome" },
+		javascriptreact = { "prettier", "biome" },
+		typescript = { "prettier", "biome" },
+		typescriptreact = { "prettier", "biome" },
 		php = { "pint" },
 	},
 })

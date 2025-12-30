@@ -1,2 +1,1 @@
-vim.treesitter.language.register("typescript", "typescriptreact")
-vim.treesitter.start()
+vim.cmd.runtime({ "ftplugin/typescript.lua", bang = true })

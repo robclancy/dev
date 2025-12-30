@@ -1,1 +1,1 @@
-vim.treesitter.start()
+vim.cmd.runtime({ "ftplugin/javascript.lua", bang = true })
