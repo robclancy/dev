@@ -24,6 +24,7 @@ tree-sitter-jsx = "0.0.30"
 tree-sitter-markdown_inline = "0.0.38"
 tree-sitter-markdown = "0.0.40"
 "copilot.lua" = "scm"
+tree-sitter-odin = "0.0.32"
 
 [plugins."accent.vim"]
 git = "alligator/accent.vim"
