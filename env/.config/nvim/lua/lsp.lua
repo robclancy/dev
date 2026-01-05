@@ -9,6 +9,7 @@ vim.lsp.enable({
 	-- "phan",
 	"elixir",
 	"phpactor",
+	"odin",
 })
 
 vim.lsp.config("*", {
