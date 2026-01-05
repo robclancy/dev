@@ -1,165 +1,170 @@
-// Key Odin syntax patterns:
-//
-// :: declares constants, procedures, and types
-// := declares and initializes variables
-// : declares variables without initialization
-// {} creates slices/arrays
-// or_else handles error cases
-// defer runs code when procedure exits
-// Multiple return values with comma separation
+package main
 
-package main  // Declares this file belongs to the 'main' package (entry point for executable)
+import "core:fmt"
+import "core:os"
+import "core:path/filepath"
 
-// Import statements - bring in standard library modules
-import "core:os"           // Operating system interface (files, env vars, processes)
-import "core:fmt"          // Formatted printing (like printf)
-import "core:strings"      // String manipulation functions
-import "core:path/filepath" // File path operations (join, abs, etc.)
+dry := true
 
-// Main procedure - entry point of the program (like main() in C)
+printf :: proc(format: string, args: ..any) {
+	if dry {
+		fmt.printf("[DRY] ")
+	}
+	fmt.printf(format, ..args)
+}
+
+apply :: proc(action: proc()) {
+	if !dry {
+		action()
+	}
+}
+
 main :: proc() {
-    // Variable declaration with type inference - creates boolean set to false
-    dry := false
+	for arg in os.args[1:] {
+		if arg == "--apply" {
+			dry = false
+		}
+	}
 
-    // Variable declaration without initialization - will be assigned later
-    xdg_config_home: string
+	xdg_config_home: string
 
-    // os.lookup_env returns (value, exists_bool) - multiple return values
-    // 'if' with initialization - declares env_val in the if scope
-    if env_val, exists := os.lookup_env("XDG_CONFIG_HOME"); exists {
-        fmt.println("using", env_val)  // Print multiple values separated by spaces
-        xdg_config_home = env_val      // Assign to our variable
-    } else {
-        fmt.println("XDG_CONFIG_HOME not set")
+	if env_val, exists := os.lookup_env("XDG_CONFIG_HOME"); exists {
+		fmt.println("using", env_val)
+		xdg_config_home = env_val
+	} else {
+		fmt.println("XDG_CONFIG_HOME not set")
 
-        // os.get_env returns just the value (panics if not found)
-        home := os.get_env("HOME")
+		home := os.get_env("HOME")
+		config_path := filepath.join({home, ".config"})
 
-        // filepath.join takes a slice of strings {...} and joins them with path separator
-        config_path := filepath.join({home, ".config"})
+		fmt.printf("using %s\n", config_path)
+		xdg_config_home = config_path
 
-        // fmt.printf - formatted printing like C's printf
-        fmt.printf("using %s\n", config_path)
-        xdg_config_home = config_path
+		os.set_env("XDG_CONFIG_HOME", config_path)
+	}
 
-        // Set environment variable for current process
-        os.set_env("XDG_CONFIG_HOME", config_path)
-    }
+	copy_files("./env/.config", xdg_config_home)
 
-    // Call our custom procedure with two string arguments
-    copy_files("./env/.config", xdg_config_home)
-
-    // filepath.abs returns (absolute_path, error) - 'or_else' handles the error case
-    rocks_src := filepath.abs("./env/.config/nvim/rocks.toml") or_else ""
-
-    // Join path components into a single path string
-    rocks_dst := filepath.join({xdg_config_home, "nvim/rocks.toml"})
-
-    // Formatted print with multiple arguments
-    fmt.printf("symlinking: ln -sf %s %s\n", rocks_src, rocks_dst)
-
-    // Remove existing file/symlink (ignores errors if file doesn't exist)
-    os.remove(rocks_dst)
-
-    // Create symlink - 'if' with error checking pattern
-    if err := os.link(rocks_src, rocks_dst); err != nil {
-        // %v is generic format specifier for any type
-        fmt.printf("Error creating symlink: %v\n", err)
-    }
-
-    // Execute shell command and wait for completion
-    os.system("hyprctl reload")
+	if dry {
+		fmt.printf("\nTo apply these changes, run:\n")
+		fmt.printf("  %s --apply\n", os.args[0])
+	}
 }
 
-// Procedure definition - takes two string parameters, returns nothing
+remove_recursive :: proc(path: string) {
+	info, err := os.stat(path)
+	if err != 0 {
+		return
+	}
+
+	if info.is_dir {
+		f, open_err := os.open(path)
+		if open_err == 0 {
+			defer os.close(f)
+
+			fis, read_err := os.read_dir(f, -1)
+			if read_err == 0 {
+				defer delete(fis)
+				for fi in fis {
+					entry_path := filepath.join({path, fi.name})
+					remove_recursive(entry_path)
+				}
+			}
+		}
+		os.remove_directory(path)
+	} else {
+		os.remove(path)
+	}
+}
+
 copy_files :: proc(from: string, to: string) {
-    // ANSI escape codes for colored terminal output (purple text, then reset)
-    fmt.printf("\x1b[35mcopying files: %s -> %s\x1b[0m\n", from, to)
+	printf("\x1b[35mcopying files: %s -> %s\x1b[0m\n", from, to)
 
-    // Get current working directory to restore later
-    old_dir := os.get_current_directory()
+	old_dir := os.get_current_directory()
+	defer os.set_current_directory(old_dir)
 
-    // 'defer' executes this statement when the procedure exits (like finally)
-    defer os.set_current_directory(old_dir)
+	os.set_current_directory(from)
 
-    // Change to the source directory
-    os.set_current_directory(from)
+	f, err := os.open(".")
+	if err != 0 {
+		printf("Error opening directory: %v\n", err)
+		return
+	}
+	defer os.close(f)
 
-    // Read directory contents - returns (entries_array, error)
-    entries, err := os.read_dir(".")
+	entries, read_err := os.read_dir(f, -1)
+	if read_err != 0 {
+		printf("Error reading directory: %v\n", read_err)
+		return
+	}
+	defer delete(entries)
 
-    // Check if error occurred during directory reading
-    if err != nil {
-        fmt.printf("Error reading directory: %v\n", err)
-        return  // Exit procedure early
-    }
+	for entry in entries {
+		if entry.is_dir {
+			// Must copy BEFORE creating closures
+			name := entry.name
+			path := filepath.join({to, name})
 
-    // 'for-in' loop - iterate over each entry in the entries array
-    for entry in entries {
-        // Check if this entry is a directory (not a file)
-        if entry.is_dir {
-            // Build destination path by joining components
-            dir_path := filepath.join({to, entry.name})
+			printf("removing: rm -rf %s\n", path)
+			{
+				p := path
+				apply(proc() {
+					remove_recursive(p)
+				})
+			}
 
-            fmt.printf("removing: rm -rf %s\n", dir_path)
-            // Remove directory and all contents recursively
-            os.remove_all(dir_path)
-
-            fmt.printf("copying: cp -r ./%s %s\n", entry.name, dir_path)
-            // Call our recursive copy procedure
-            copy_recursive(entry.name, dir_path)
-        }
-    }
+			printf("copying: cp -r ./%s %s\n", name, path)
+			{
+				n := name
+				p := path
+				apply(proc() {
+					copy_recursive(n, p)
+				})
+			}
+		}
+	}
 }
 
-// Recursive procedure to copy files and directories
 copy_recursive :: proc(src: string, dst: string) {
-    // Get file/directory information - returns (file_info, error)
-    src_info, src_err := os.stat(src)
+	src_info, src_err := os.stat(src)
+	if src_err != 0 {
+		fmt.printf("Error stating source: %v\n", src_err)
+		return
+	}
 
-    // Check for errors getting file info
-    if src_err != nil {
-        fmt.printf("Error stating source: %v\n", src_err)
-        return
-    }
+	if src_info.is_dir {
+		os.make_directory(dst)
 
-    // Check if source is a directory
-    if src_info.is_dir {
-        // Create the destination directory
-        os.make_directory(dst)
+		f, open_err := os.open(src)
+		if open_err != 0 {
+			fmt.printf("Error opening directory %s: %v\n", src, open_err)
+			return
+		}
+		defer os.close(f)
 
-        // Read contents of source directory
-        entries, err := os.read_dir(src)
-        if err != nil {
-            fmt.printf("Error reading directory %s: %v\n", src, err)
-            return
-        }
+		entries, read_err := os.read_dir(f, -1)
+		if read_err != 0 {
+			fmt.printf("Error reading directory %s: %v\n", src, read_err)
+			return
+		}
+		defer delete(entries)
 
-        // Recursively copy each item in the directory
-        for entry in entries {
-            // Build full paths for source and destination
-            src_path := filepath.join({src, entry.name})
-            dst_path := filepath.join({dst, entry.name})
-            // Recursive call to copy this item
-            copy_recursive(src_path, dst_path)
-        }
-    } else {
-        // Source is a file - read entire file into memory
-        // Returns (byte_array, success_bool)
-        data, read_ok := os.read_entire_file(src)
+		for entry in entries {
+			src_path := filepath.join({src, entry.name})
+			dst_path := filepath.join({dst, entry.name})
+			copy_recursive(src_path, dst_path)
+		}
+	} else {
+		data, read_ok := os.read_entire_file(src)
+		if !read_ok {
+			fmt.printf("Error reading file %s\n", src)
+			return
+		}
+		defer delete(data)
 
-        if !read_ok {  // '!' is logical NOT operator
-            fmt.printf("Error reading file %s\n", src)
-            return
-        }
-
-        // 'defer delete(data)' - free the memory when procedure exits
-        defer delete(data)
-
-        // Write the data to destination file - returns success_bool
-        write_ok := os.write_entire_file(dst, data)
-        if !write_ok {
-            fmt.printf("Error writing file %s\n", dst)
-        }
-    }
+		write_ok := os.write_entire_file(dst, data)
+		if !write_ok {
+			fmt.printf("Error writing file %s\n", dst)
+		}
+	}
 }
