@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+paru -S jujutsu --noconfirm --needed
+
+REPO_DIR=~/p10k-jj-status
+
+if [ -d "$REPO_DIR/.git" ]; then
+    git -C "$REPO_DIR" pull
+else
+    git clone --depth=1 https://github.com/xs5871/p10k-jj-status.git "$REPO_DIR"
+fi

@@ -1,21 +1,14 @@
 #!/usr/bin/env elixir
 
+Code.require_file("dry_run.ex", __DIR__)
+
 defmodule Setup do
-  defmacro apply(do: block) do
-    if System.get_env("DRY", "true") == "true" do
-      quote do
-        IO.puts("would execute: #{unquote(Macro.to_string(block))}")
-      end
-    else
-      block
-    end
-  end
+  use DryRun
 
   def main(args) do
-    dry = "--apply" not in args
-    System.put_env("DRY", to_string(dry))
+    DryRun.init(args)
 
-    if dry do
+    if DryRun.enabled?() do
       IO.puts("DRY RUN - use --apply to execute")
     else
       IO.puts("EXECUTING")
@@ -37,19 +30,9 @@ defmodule Setup do
     copy_files("./env/.config", config_home)
 
     apply do
-      System.cmd("hyprctl", ["reload"], into: :io)
+      System.cmd("hyprctl", ["reload"], into: IO.stream(:stdio, :line))
     end
   end
-
-  defp copy_file(from, to) do
-    IO.puts("\e[35mcopying file: #{from} -> #{to}\e[0m")
-    File.cd!(from)
-
-  IO.puts("copying: cp ./#{from} #{to}")
-  apply do
-	File.cp("./#{from}", to)
-  end
-end
 
   defp copy_files(from, to) do
     IO.puts("\e[35mcopying files: #{from} -> #{to}\e[0m")

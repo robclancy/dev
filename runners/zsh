@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+paru -S zsh --noconfirm --needed
+paru -S zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search --noconfirm --needed
+
+mkdir -p ~/.zsh
+
+INPUT_REPO_DIR=~/.zsh/input
+if [ -d "$INPUT_REPO_DIR/.git" ]; then
+    git -C "$INPUT_REPO_DIR" pull
+else
+	git clone --depth=1 https://github.com/zimfw/input "$INPUT_REPO_DIR"
+fi

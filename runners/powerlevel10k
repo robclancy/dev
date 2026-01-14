@@ -1,0 +1,10 @@
+
+#!/usr/bin/env bash
+
+REPO_DIR=~/powerlevel10k
+
+if [ -d "$REPO_DIR/.git" ]; then
+    git -C "$REPO_DIR" pull
+else
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$REPO_DIR"
+fi

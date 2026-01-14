@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+paru -S elixir --noconfirm --needed
+mix local.hex --force
+paru -S expert-git --noconfirm --needed
+
