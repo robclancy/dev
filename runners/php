@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+paru -S composer --noconfirm --needed
+

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+paru -S opencode neovim-git tmux fzf fnott foot ghostty fuzzel grim yambar hyprpaper hyprcursor ttf-jetbrains-mono btop thunar --noconfirm --needed --noprovides

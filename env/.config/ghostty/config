@@ -1,3 +1,4 @@
+command = /usr/bin/zsh
 theme = Pnevma
 background = black
 background-opacity = 0.95

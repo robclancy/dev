@@ -23,10 +23,10 @@ anchors:
       content: {string: {text: " "}}
 
 bar:
-  height: 26
+  height: 30
   location: top
   background: 000000ff
-  font: MonaspaceKrypton
+  font: MonaspaceKrypton:pixelsize=24
   spacing: 3
   margin: 5
 
