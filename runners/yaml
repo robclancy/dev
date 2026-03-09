@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+paru -S yaml-language-server  --noconfirm --needed --noprovides

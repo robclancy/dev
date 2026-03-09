@@ -1,15 +1,5 @@
-# better reference than docs: 
-# https://github.com/meeranh/dotfiles/blob/0c87d9b5d302e4afb990924945a96b68e8e0e779/yambar/config.yml#L136
-#
-# run this to see changes live:
-#
-# yambar &
-# while true; do
-#  inotifywait -e modify ~/.config/yambar/config.yml
-#  pkill yambar
-#  yambar &
-# done
-#
+color_green: &color_green
+  foreground: "A6E3A1FF"
 
 color_red: &color_red
   foreground: "F38BA8FF"
@@ -19,8 +9,39 @@ color_yellow: &color_yellow
 
 anchors:
   separator: &separator
-    label: 
+    label:
       content: {string: {text: " "}}
+
+bat: &bat
+  list:
+    spacing: 0
+    items:
+      - map:
+          conditions:
+            "(state == \"not charging\") && (capacity < 10)":
+              string:
+                text: "*"
+                <<: *color_red
+            "(state == charging) || (state == \"not charging\") || (state == full)":
+              ramp:
+                tag: capacity
+                items:
+                  - string: { text: " ", <<: *color_red }
+                  - string: { text: " ", <<: *color_red }
+                  - string: { text: " ", <<: *color_green }
+                  - string: { text: " ", <<: *color_green }
+                  - string: { text: " ", <<: *color_green }
+          default:
+            ramp:
+              tag: capacity
+              items:
+                - string: { text: " ", <<: *color_red }
+                - string: { text: " ", <<: *color_red }
+                - string: { text: " ", <<: *color_yellow }
+                - string: { text: " ", <<: *color_yellow }
+                - string: { text: " ", <<: *color_yellow }
+      - string:
+          text: "{capacity}% "
 
 bar:
   height: 30
@@ -30,38 +51,38 @@ bar:
   spacing: 3
   margin: 5
 
-  left: 
+  left:
     - cpu:
         poll-interval: 1111
         content:
           map:
             default: {empty: {}}
-            conditions: 
+            conditions:
               id < 0:
                 list:
-                  items: 
+                  items:
                     - string: {text: "CPU "}
                     - map:
                         default: {string: {text: "{cpu}%"}}
                         conditions:
                           cpu > 70:
-                            string: 
+                            string:
                               text: "{cpu}%"
                               <<: *color_yellow
 
     - script:
         path: '~/.config/yambar/cpu_temp.sh'
         poll-interval: 1111
-        content: 
+        content:
           map:
             default: {string: {text: "{temp}°C"}}
             conditions:
               temp > 85:
-                string: 
+                string:
                   text: "{temp}°C"
                   <<: *color_red
               temp > 70:
-                string: 
+                string:
                   text: "{temp}°C"
                   <<: *color_yellow
     - *separator
@@ -75,7 +96,7 @@ bar:
                   default: {string: {text: "{percent_used}%"}}
                   conditions:
                     percent_used > 80:
-                      string: 
+                      string:
                         text: '{percent_used}%'
                         <<: *color_red
     - *separator
@@ -117,15 +138,22 @@ bar:
                       map:
                         default:
                           - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s"}
-
                         conditions:
                           ipv4 == "":
                             - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s", foreground: ffffff66}
+    - battery:
+        name: BAT0
+        poll-interval: 30000
+        content: *bat
+    - battery:
+        name: BAT1
+        poll-interval: 30000
+        content: *bat
   center:
     - script:
         path: '~/.config/yambar/workspaces.sh'
         poll-interval: 666
-        content: 
+        content:
           string: {text: "{workspaces}"}
   right:
     - pipewire:
@@ -138,15 +166,15 @@ bar:
                   items:
                     - map:
                         default:
-                          string: 
+                          string:
                             text: "VOL {cubic_volume}%"
-                            on-click: 
+                            on-click:
                               left: "pactl set-sink-mute @DEFAULT_SINK@ toggle"
                               wheel-up: "pactl set-sink-volume @DEFAULT_SINK@ +1%"
                               wheel-down: "pactl set-sink-volume @DEFAULT_SINK@ -1%"
                         conditions:
                           muted:
-                            string: 
+                            string:
                               text: "VOL [MUTED]"
                               on-click:
                                 left: "pactl set-sink-mute @DEFAULT_SINK@ toggle"
