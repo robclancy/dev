@@ -23,6 +23,8 @@ vim.pack.add({
 	{ src = "https://github.com/rostislavarts/naysayer.nvim" },
 
 	{ src = "https://github.com/numToStr/Comment.nvim" },
+
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 })
 
 local cargo_plugins = {

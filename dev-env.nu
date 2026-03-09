@@ -17,6 +17,8 @@ def main [] {
 "
 	ln -sf ('./env/.config/nvim/rocks.toml' | path expand) $"($env.XDG_CONFIG_HOME)/nvim/rocks.toml"
 
+    ./ghostty.sh
+
 	hyprctl reload
 }
 
