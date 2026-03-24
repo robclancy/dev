@@ -19,6 +19,19 @@ def main [] {
 
     ./ghostty.sh
 
+	# Merge yambar hooks into ~/.claude/settings.json without touching anything else
+	let claude_settings = $"($env.HOME)/.claude/settings.json"
+	let current = if ($claude_settings | path exists) { open $claude_settings } else { {} }
+	let hooks = {
+		hooks: {
+			UserPromptSubmit: [{matcher: "", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh responding"}]}]
+			Stop:             [{matcher: "", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh needs_attention"}]}]
+			Notification:     [{matcher: "permission_prompt", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh permission"}]}]
+		}
+	}
+	print $"updating claude settings: ($claude_settings)"
+	$current | merge $hooks | save -f $claude_settings
+
 	hyprctl reload
 }
 

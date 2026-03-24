@@ -128,6 +128,53 @@ bar:
         content: 
           string: {text: "{workspaces}"}
   right:
+    - script:
+        path: '~/.config/yambar/claude_status.sh'
+        poll-interval: 1000
+        content:
+          map:
+            default: {empty: {}}
+            conditions:
+              any:
+                list:
+                  spacing: 10
+                  items:
+                    - map:
+                        default: {empty: {}}
+                        conditions:
+                          s0 == responding:      {string: {text: "{s0e}", foreground: "89B4FAFF"}}
+                          s0 == permission:      {string: {text: "{s0e}", foreground: "F38BA8FF"}}
+                          s0 == needs_attention: {string: {text: "{s0e}", foreground: "E0AF68FF"}}
+                          s0 == seen:            {string: {text: "{s0e}", foreground: "585B70FF"}}
+                    - map:
+                        default: {empty: {}}
+                        conditions:
+                          s1 == responding:      {string: {text: "{s1e}", foreground: "89B4FAFF"}}
+                          s1 == permission:      {string: {text: "{s1e}", foreground: "F38BA8FF"}}
+                          s1 == needs_attention: {string: {text: "{s1e}", foreground: "E0AF68FF"}}
+                          s1 == seen:            {string: {text: "{s1e}", foreground: "585B70FF"}}
+                    - map:
+                        default: {empty: {}}
+                        conditions:
+                          s2 == responding:      {string: {text: "{s2e}", foreground: "89B4FAFF"}}
+                          s2 == permission:      {string: {text: "{s2e}", foreground: "F38BA8FF"}}
+                          s2 == needs_attention: {string: {text: "{s2e}", foreground: "E0AF68FF"}}
+                          s2 == seen:            {string: {text: "{s2e}", foreground: "585B70FF"}}
+                    - map:
+                        default: {empty: {}}
+                        conditions:
+                          s3 == responding:      {string: {text: "{s3e}", foreground: "89B4FAFF"}}
+                          s3 == permission:      {string: {text: "{s3e}", foreground: "F38BA8FF"}}
+                          s3 == needs_attention: {string: {text: "{s3e}", foreground: "E0AF68FF"}}
+                          s3 == seen:            {string: {text: "{s3e}", foreground: "585B70FF"}}
+                    - map:
+                        default: {empty: {}}
+                        conditions:
+                          s4 == responding:      {string: {text: "{s4e}", foreground: "89B4FAFF"}}
+                          s4 == permission:      {string: {text: "{s4e}", foreground: "F38BA8FF"}}
+                          s4 == needs_attention: {string: {text: "{s4e}", foreground: "E0AF68FF"}}
+                          s4 == seen:            {string: {text: "{s4e}", foreground: "585B70FF"}}
+    - *separator
     - pipewire:
         content:
           map:
