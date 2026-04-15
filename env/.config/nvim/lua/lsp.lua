@@ -6,13 +6,12 @@ vim.lsp.enable({
 	"jsonls",
 	"cssls",
 	"html",
-	-- "phan",
 	"elixir",
 	"phpactor",
 	"odin",
 })
 
--- https://github.com/neovim/neovim/issues/12970#issuecomment-1166957212
+-- github.com/neovim/neovim/issues/12970#issuecomment-1166957212
 vim.lsp.util.apply_text_document_edit = function(text_document_edit, index, offset_encoding)
 	local text_document = text_document_edit.textDocument
 	local bufnr = vim.uri_to_bufnr(text_document.uri)

@@ -1,3 +1,5 @@
+require('vim._core.ui2').enable({})
+
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 700
 
@@ -12,7 +14,6 @@ vim.opt.breakindent = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 0
 vim.opt.showtabline = 0
--- vim.opt.statusline = "⤿%4* %<%f%*"
 vim.opt.winbar = "%=%m %f"
 vim.opt.guicursor = ""
 
@@ -42,7 +43,6 @@ vim.opt.undofile = true
 
 vim.opt.scrolloff = 10
 
--- System clipboard
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 vim.keymap.set(
 	{ "n", "v", "x" },
@@ -52,9 +52,8 @@ vim.keymap.set(
 )
 vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
 
--- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
+	desc = "yank",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
