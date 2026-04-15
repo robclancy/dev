@@ -103,24 +103,24 @@ bar:
                         default: {string: {text: "not connected", foreground: ff0000ff }}
                         conditions:
                           state == up && ipv4 != "": {string: {text: connected}}
-    - network:
-        poll-interval: 2222
-        content:
-          map:
-            default: {empty: {}}
-            conditions:
-              name == wlp5s0:
-                map:
-                  conditions:
-                    state == down: {string: {text: "not connected", foreground: ff0000ff}}
-                    state == up:
-                      map:
-                        default:
-                          - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s"}
-
-                        conditions:
-                          ipv4 == "":
-                            - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s", foreground: ffffff66}
+    # - network:
+    #     poll-interval: 2222
+    #     content:
+    #       map:
+    #         default: {empty: {}}
+    #         conditions:
+    #           name == wlp5s0:
+    #             map:
+    #               conditions:
+    #                 state == down: {string: {text: "not connected", foreground: ff0000ff}}
+    #                 state == up:
+    #                   map:
+    #                     default:
+    #                       - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s"}
+    #
+    #                     conditions:
+    #                       ipv4 == "":
+    #                         - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s", foreground: ffffff66}
   center:
     - script:
         path: '~/.config/yambar/workspaces.sh'

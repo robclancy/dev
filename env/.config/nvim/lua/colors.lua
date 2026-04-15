@@ -54,7 +54,53 @@ require("cyberdream").setup({
 	},
 })
 
+local function mfd()
+	vim.cmd("colorscheme mfd-flir")
+
+	vim.opt.guicursor = {
+		"n:block-CursorNormal",
+		"v:block-CursorVisual",
+		"i:block-CursorInsert",
+		"r-cr:block-CursorReplace",
+		"c:block-CursorCommand",
+	}
+
+	require("mfd").enable_cursor_sync()
+end
+
+local themes = {
+	"mfd-stealth",
+	"mfd-amber",
+	"mfd-mono",
+	"mfd-hud",
+	"mfd-nvg",
+	"mfd-blackout",
+	"mfd-flir",
+	"mfd-flir-bh",
+	"mfd-flir-rh",
+	"mfd-flir-fusion",
+	"mfd-gbl-light",
+	"mfd-gbl-dark",
+	"mfd-lumon",
+	"naysayer",
+	"matrix",
+}
+
+local current = 3 -- mfd-stealth
+local function next_theme()
+	current = (current % #themes) + 1
+	vim.cmd("colorscheme " .. themes[current])
+	vim.notify("Theme: " .. themes[current])
+end
+
+-- vim.keymap.set("n", "t", next_theme, { desc = "Next MFD theme" })
+vim.api.nvim_create_user_command("MfdNextTheme", next_theme, { desc = "Next MFD theme" })
+
+mfd()
+
+-- vim.cmd("colorscheme matrix")
+
 -- vim.cmd("colorscheme kanso")
 -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#080808" })
 
-vim.cmd("colorscheme naysayer")
+-- vim.cmd("colorscheme naysayer")

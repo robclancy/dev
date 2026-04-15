@@ -25,7 +25,12 @@ vim.pack.add({
 	{ src = "https://github.com/numToStr/Comment.nvim" },
 
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+
+	{ src = "https://github.com/kungfusheep/mfd.nvim" },
 })
+
+-- vim.cmd("packadd nvim.undotree")
+-- vim.keymap.set("n", "<leader>u", require("undotree").open)
 
 local cargo_plugins = {
 	"blink.cmp",

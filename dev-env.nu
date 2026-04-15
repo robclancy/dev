@@ -25,8 +25,8 @@ def main [] {
 	let hooks = {
 		hooks: {
 			UserPromptSubmit: [{matcher: "", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh responding"}]}]
-			Stop:             [{matcher: "", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh needs_attention"}]}]
-			Notification:     [{matcher: "permission_prompt", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh permission"}]}]
+			Stop:             [{matcher: "", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh needs_attention"}, {type: "command", command: "paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga"}]}]
+			Notification:     [{matcher: "permission_prompt", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh permission"}, {type: "command", command: "paplay /usr/share/sounds/freedesktop/stereo/dialog-error.oga"}]}]
 		}
 	}
 	print $"updating claude settings: ($claude_settings)"
