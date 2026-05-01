@@ -75,7 +75,20 @@ end
 -- vim.keymap.set("n", "t", next_theme, { desc = "Next MFD theme" })
 vim.api.nvim_create_user_command("MfdNextTheme", next_theme, { desc = "Next MFD theme" })
 
-mfd()
+vim.cmd("colorscheme shale")
+
+local bg = "#0a0a0a"
+
+vim.api.nvim_set_hl(0, "Normal", { bg = bg })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = bg })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = bg })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = bg })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = bg })
+vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#1f1f1f" })
+vim.api.nvim_set_hl(0, "PmenuSbar", { bg = bg })
+vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "#333333" })
+
+-- mfd()
 
 -- vim.cmd("colorscheme matrix")
 

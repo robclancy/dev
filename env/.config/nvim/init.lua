@@ -23,16 +23,16 @@ vim.pack.add({
 	{ src = "https://github.com/webhooked/kanso.nvim" },
 	{ src = "https://github.com/scottmckendry/cyberdream.nvim" },
 	{ src = "https://github.com/rostislavarts/naysayer.nvim" },
+	{ src = "https://github.com/kungfusheep/mfd.nvim" },
+	{ src = "https://github.com/smit4k/shale.nvim" },
 
 	{ src = "https://github.com/numToStr/Comment.nvim" },
 
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 
-	{ src = "https://github.com/kungfusheep/mfd.nvim" },
 	{ src = "https://github.com/sudo-tee/opencode.nvim" },
 	{ src = "https://github.com/kevinhwang91/nvim-bqf" },
 })
-
 
 vim.api.nvim_create_autocmd("PackChanged", {
 	callback = function(ev)
