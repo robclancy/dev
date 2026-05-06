@@ -32,6 +32,10 @@ vim.pack.add({
 
 	{ src = "https://github.com/sudo-tee/opencode.nvim" },
 	{ src = "https://github.com/kevinhwang91/nvim-bqf" },
+
+	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
+	{ src = "https://github.com/nvim-neotest/nvim-nio" },
 })
 
 vim.api.nvim_create_autocmd("PackChanged", {

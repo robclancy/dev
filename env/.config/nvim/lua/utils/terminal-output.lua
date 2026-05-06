@@ -5,10 +5,11 @@ local terminal_buffers = {}
 local function create_terminal_output_buffer(command, opts, source_file)
 	opts = opts or {}
 	local buffer_key = opts.filetype or "terminal-output"
+	local rerun = opts.rerun or ("pnpm jest " .. vim.fn.shellescape(source_file))
 
 	local existing_buf = terminal_buffers[buffer_key]
 	if existing_buf and vim.api.nvim_buf_is_valid(existing_buf) then
-		local wins = vim.fn.win_findbuf(existing_buf)
+		local wins = vim.fn.win_find_buf(existing_buf)
 		if #wins > 0 then
 			vim.api.nvim_set_current_win(wins[1])
 		else
@@ -46,7 +47,7 @@ local function create_terminal_output_buffer(command, opts, source_file)
 		vim.bo.modifiable = true
 		vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
 		vim.bo.modified = false
-		vim.fn.termopen("pnpm jest " .. vim.fn.shellescape(source_file))
+		vim.fn.termopen(rerun)
 		vim.cmd("stopinsert")
 	end, { buffer = true })
 

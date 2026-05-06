@@ -34,6 +34,7 @@ conform.setup({
 		typescriptreact = { "prettier", "biome" },
 		php = { "pint" },
 		astro = { "biome" },
+		cs = { "csharpier" },
 	},
 })
 
