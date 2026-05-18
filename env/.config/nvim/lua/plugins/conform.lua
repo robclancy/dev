@@ -33,6 +33,8 @@ conform.setup({
 		typescript = { "prettier", "biome" },
 		typescriptreact = { "prettier", "biome" },
 		php = { "pint" },
+		astro = { "biome" },
+		cs = { "csharpier" },
 	},
 })
 
@@ -41,5 +43,5 @@ vim.keymap.set("", "<leader>F", function()
 end, { desc = "[F]ormat buffer" })
 
 vim.api.nvim_create_user_command("ConformInfo", function()
-	conform.info()
+	require("conform.health").show_window()
 end, {})

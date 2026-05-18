@@ -3,7 +3,7 @@ vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- System clipboard
+-- clipboard
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 vim.keymap.set(
 	{ "n", "v", "x" },
@@ -22,3 +22,11 @@ vim.keymap.set("n", "K", function(opts)
 	opts.border = "single"
 	vim.lsp.buf.hover(opts)
 end)
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		vim.keymap.set("n", "<C-n>", ":cnext<CR>", { buffer = true })
+		vim.keymap.set("n", "<C-p>", ":cprev<CR>", { buffer = true })
+	end,
+})

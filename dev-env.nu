@@ -17,6 +17,21 @@ def main [] {
 "
 	ln -sf ('./env/.config/nvim/rocks.toml' | path expand) $"($env.XDG_CONFIG_HOME)/nvim/rocks.toml"
 
+    ./ghostty.sh
+
+	# Merge yambar hooks into ~/.claude/settings.json without touching anything else
+	let claude_settings = $"($env.HOME)/.claude/settings.json"
+	let current = if ($claude_settings | path exists) { open $claude_settings } else { {} }
+	let hooks = {
+		hooks: {
+			UserPromptSubmit: [{matcher: "", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh responding"}]}]
+			Stop:             [{matcher: "", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh needs_attention"}, {type: "command", command: "paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga"}]}]
+			Notification:     [{matcher: "permission_prompt", hooks: [{type: "command", command: "~/.config/yambar/claude_hook.sh permission"}, {type: "command", command: "paplay /usr/share/sounds/freedesktop/stereo/dialog-error.oga"}]}]
+		}
+	}
+	print $"updating claude settings: ($claude_settings)"
+	$current | merge $hooks | save -f $claude_settings
+
 	hyprctl reload
 }
 

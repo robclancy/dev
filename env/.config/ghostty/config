@@ -1,4 +1,4 @@
-theme = Pnevma
+theme = Matrix
 background = black
 background-opacity = 0.95
 cursor-style = block
@@ -18,3 +18,5 @@ keybind = alt+seven=unbind
 keybind = alt+eight=unbind
 keybind = alt+nine=unbind
 keybind = alt+zero=unbind
+
+custom-shader = ~/.config/ghostty/shaders/shader.glsl

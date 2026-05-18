@@ -1,10 +1,14 @@
-require("nvim-treesitter.configs").setup({
-	ensure_installed = { "lua", "luadoc", "diff" },
-	auto_install = true,
-	highlight = {
-		enable = true,
-	},
-	indent = {
-		enable = true,
-	},
+require('nvim-treesitter').setup({
+	install_dir = vim.fn.stdpath('data') .. '/site',
 })
+
+require('nvim-treesitter').install({ 'lua', 'luadoc', 'diff', 'c_sharp' })
+
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = { 'lua', 'cs', 'diff' },
+	callback = function()
+		vim.treesitter.start()
+	end,
+})
+
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
