@@ -25,6 +25,7 @@ vim.pack.add({
 	{ src = "https://github.com/rostislavarts/naysayer.nvim" },
 	{ src = "https://github.com/kungfusheep/mfd.nvim" },
 	{ src = "https://github.com/smit4k/shale.nvim" },
+	{ src = "https://github.com/loctvl842/monokai-pro.nvim" },
 
 	{ src = "https://github.com/numToStr/Comment.nvim" },
 

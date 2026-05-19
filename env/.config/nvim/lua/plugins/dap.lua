@@ -10,6 +10,23 @@ dap.adapters.coreclr = {
 dap.configurations.cs = {
 	{
 		type = "coreclr",
+		name = "Attach to Godot",
+		request = "attach",
+		processId = function()
+			local output = vim.fn.system("pgrep -f 'godot.*--debugger'") 
+			if output == "" then
+				output = vim.fn.system("pgrep -f '.dotnet/GodotSharp'")
+			end
+			if output == "" then
+				vim.notify("No Godot process found. Start Godot with debugging first.", vim.log.levels.WARN)
+				return nil
+			end
+			local pid = tonumber(output:match("(%d+)"))
+			return pid
+		end,
+	},
+	{
+		type = "coreclr",
 		name = "Launch - netcoredbg",
 		request = "launch",
 		program = function()

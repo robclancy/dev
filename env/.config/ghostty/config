@@ -1,6 +1,4 @@
-theme = Matrix
-background = black
-background-opacity = 0.95
+theme = Monokai Pro Octagon
 cursor-style = block
 
 font-family = "MonaspaceNeon"
@@ -19,4 +17,4 @@ keybind = alt+eight=unbind
 keybind = alt+nine=unbind
 keybind = alt+zero=unbind
 
-#custom-shader = ~/.config/ghostty/shaders/shader.glsl
+# custom-shader = ~/.config/ghostty/shaders/shader.glsl

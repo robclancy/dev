@@ -29,3 +29,9 @@ else
 fi
 
 echo "${state}|$(date +%s)|${window_addr}|${claude_pid}|${TMUX_PANE:-}" > "$state_file"
+
+if [ "$state" = "responding" ]; then
+    rm -f /tmp/claude_done
+else
+    touch /tmp/claude_done
+fi

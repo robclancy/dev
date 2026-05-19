@@ -129,16 +129,20 @@ bar:
           string: {text: "{workspaces}"}
   right:
     - script:
-        path: '~/.config/yambar/claude_usage.sh'
-        poll-interval: 60000
+        path: '~/.config/yambar/claude_idle.sh'
+        poll-interval: 1000
         content:
           map:
             default: {empty: {}}
             conditions:
-              has_usage:
+              state == 1:
                 string:
-                  text: "{usage}"
-                  foreground: "89B4FAFF"
+                  text: "◆"
+                  foreground: "FF0000FF"
+              state == 2:
+                string:
+                  text: "◆"
+                  foreground: "FF8C00FF"
     - *separator
     - pipewire:
         content:
