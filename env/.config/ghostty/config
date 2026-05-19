@@ -19,4 +19,4 @@ keybind = alt+eight=unbind
 keybind = alt+nine=unbind
 keybind = alt+zero=unbind
 
-custom-shader = ~/.config/ghostty/shaders/shader.glsl
+#custom-shader = ~/.config/ghostty/shaders/shader.glsl
