@@ -110,3 +110,4 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 # opencode
 export PATH=/home/robbo/.opencode/bin:$PATH
+export PATH="/usr/lib/rustup/bin:$PATH"

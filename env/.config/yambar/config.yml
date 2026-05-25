@@ -50,19 +50,49 @@ bar:
                               <<: *color_yellow
 
     - script:
-        path: '~/.config/yambar/cpu_temp.sh'
+        path: '~/.config/yambar/temp_ccd1.sh'
         poll-interval: 1111
-        content: 
+        content:
           map:
-            default: {string: {text: "{temp}°C"}}
+            default: {string: {text: "C1 {temp}"}}
             conditions:
               temp > 85:
-                string: 
-                  text: "{temp}°C"
+                string:
+                  text: "C1 {temp}"
                   <<: *color_red
               temp > 70:
-                string: 
-                  text: "{temp}°C"
+                string:
+                  text: "C1 {temp}"
+                  <<: *color_yellow
+    - script:
+        path: '~/.config/yambar/temp_ccd2.sh'
+        poll-interval: 1111
+        content:
+          map:
+            default: {string: {text: "C2 {temp}"}}
+            conditions:
+              temp > 85:
+                string:
+                  text: "C2 {temp}"
+                  <<: *color_red
+              temp > 70:
+                string:
+                  text: "C2 {temp}"
+                  <<: *color_yellow
+    - script:
+        path: '~/.config/yambar/temp_gpu.sh'
+        poll-interval: 1111
+        content:
+          map:
+            default: {string: {text: "GPU {temp}"}}
+            conditions:
+              temp > 85:
+                string:
+                  text: "GPU {temp}"
+                  <<: *color_red
+              temp > 70:
+                string:
+                  text: "GPU {temp}"
                   <<: *color_yellow
     - *separator
     - mem:

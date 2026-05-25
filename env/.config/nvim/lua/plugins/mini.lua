@@ -1,4 +1,5 @@
 require("mini.completion").setup()
+vim.o.completeopt = "menuone,noinsert"
 require("mini.comment").setup()
 
 vim.api.nvim_create_autocmd("InsertEnter", {

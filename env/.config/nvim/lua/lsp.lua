@@ -10,6 +10,7 @@ vim.lsp.enable({
 	"phpactor",
 	"odin",
 	"omnisharp",
+	"rust_analyzer",
 })
 
 -- github.com/neovim/neovim/issues/12970#issuecomment-1166957212

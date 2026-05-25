@@ -1,12 +1,10 @@
 vim.pack.add({
-	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/echasnovski/mini.icons" },
 
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/folke/lazydev.nvim" },
-	{ src = "https://github.com/dmtrKovalenko/fff.nvim" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/zbirenbaum/copilot.lua" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
@@ -31,24 +29,15 @@ vim.pack.add({
 
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 
-	{ src = "https://github.com/sudo-tee/opencode.nvim" },
+	-- { src = "https://github.com/sudo-tee/opencode.nvim" },
 	{ src = "https://github.com/kevinhwang91/nvim-bqf" },
 
 	{ src = "https://github.com/mfussenegger/nvim-dap" },
 	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
 	{ src = "https://github.com/nvim-neotest/nvim-nio" },
-})
 
-vim.api.nvim_create_autocmd("PackChanged", {
-	callback = function(ev)
-		local name, kind = ev.data.spec.name, ev.data.kind
-		if name == "fff.nvim" and (kind == "install" or kind == "update") then
-			if not ev.data.active then
-				vim.cmd.packadd("fff.nvim")
-			end
-			require("fff.download").ensure_downloaded()
-		end
-	end,
+	{ src = "https://github.com/togglebyte/aml.vim" },
+	{ src = "https://github.com/togglebyte/togglerust" },
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {

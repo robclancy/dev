@@ -37,6 +37,26 @@ dap.configurations.cs = {
 
 dapui.setup()
 
+
+dap.adapters.lldb = {
+  type = "executable",
+  command = "/usr/bin/lldb-dap",
+  name = "lldb",
+}
+
+dap.configurations.rust = {
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+  },
+}
+
 dap.listeners.before.attach.dapui_config = function()
 	dapui.open()
 end
