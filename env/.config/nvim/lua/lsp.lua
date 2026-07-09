@@ -11,6 +11,7 @@ vim.lsp.enable({
 	"odin",
 	"omnisharp",
 	"rust_analyzer",
+	"gopls",
 })
 
 -- github.com/neovim/neovim/issues/12970#issuecomment-1166957212

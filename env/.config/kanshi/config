@@ -1,4 +1,9 @@
-profile ws-desktop {
+profile ws-desktop-2 {
+	output "Microstep MSI MP341CQ 0x00000745" mode 3440x1440@100Hz position 0,0
+	output "ViewSonic Corporation VX2758-SERIES VVF212020772" mode 2560x1440@144 position 3440,0
+}
+
+profile ws-desktop-3 {
 	output "Samsung Electric Company C24FG7x HTHM600104" mode 1920x1080@60 position -1920,0
 	output "Microstep MSI MP341CQ 0x00000745" mode 3440x1440@100Hz position 0,0
 	output "ViewSonic Corporation VX2758-SERIES VVF212020772" mode 2560x1440@144 position 3440,0
